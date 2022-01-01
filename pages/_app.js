@@ -1,28 +1,24 @@
 import "../styles/globals.css";
 import "../styles/notfound.css";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import 'react-image-lightbox/style.css';
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "react-image-lightbox/style.css";
 
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/nav/Navbar";
 import { useEffect } from "react";
 
-import NProgress from "nprogress"
-import 'nprogress/nprogress.css';
-import Footer from '../components/Footer';
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import Footer from "../components/Footer";
 
-function MyApp({ Component, pageProps, router}) {
- 
-
+function MyApp({ Component, pageProps, router }) {
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
       once: false,
-      mirror:false,
-      
+      mirror: false,
     });
     let routeChangeStart = () => NProgress.start();
     let routeChangeComplete = () => NProgress.done();
@@ -38,7 +34,7 @@ function MyApp({ Component, pageProps, router}) {
   }, []);
   return (
     <motion.div
-    key={router.route}
+      key={router.route}
       initial="pageInit"
       animate="pageAnim"
       variants={{
@@ -51,12 +47,11 @@ function MyApp({ Component, pageProps, router}) {
       }}
     >
       <ChakraProvider>
-        <Navbar/>
-      <Box margin="auto" padding='0' maxWidth="1366px">
-        <Component {...pageProps} />
+        <Navbar />
+        <Box margin="auto" padding="0" overflow={"hidden"}>
+          <Component {...pageProps} />
         </Box>
-        <Footer/>
-
+        <Footer />
       </ChakraProvider>
     </motion.div>
   );
